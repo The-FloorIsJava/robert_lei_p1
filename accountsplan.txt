@@ -1,0 +1,53 @@
+Accounts{
+    static int idAssigner
+    int employeeID
+    String employeeType
+    String username
+    String password
+
+    Accounts(){
+        employeeID = idAssigner;
+        idAssigner++;
+        employeeType = "employee";
+    }
+
+    Accounts(String user, String pass){
+        employeeID = idAssigner;
+        idAssigner++;
+        employeeType = "employee";
+        username = user;
+        password = pass
+    }
+
+    String getUsername(){
+        return username;
+    }
+
+}
+
+Login{
+    static int checkDatabase(String username, String password){
+        sql = "SELECT employeeID FROM ACCOUNTS WHERE username = '" + username + "' AND password = '" +password +"';"
+        try{
+        result = sql
+        }
+        catch{
+
+        }
+        if(result==null){
+        return -1;
+        }else{
+        return result;
+        }
+    }
+}
+Menu{
+    int curUserID;
+
+    boolean login(String username, String password){
+
+    }
+    void logout(){
+        curUserID = -1;
+    }
+}
