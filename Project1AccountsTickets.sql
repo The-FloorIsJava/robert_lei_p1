@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS ACCOUNTS CASCADE;
 CREATE TABLE ACCOUNTS (
 	username varchar(30) PRIMARY KEY,
-	passcode varchar(50) NOT NULL--password reserved
+	password varchar(50) NOT NULL --turns out password isnt a reserved word, looks like it though
 	firstName varchar(50),
 	lastName varchar(50),
 	address varchar(200),

@@ -1,27 +1,23 @@
 Accounts{
-    static int idAssigner
-    int employeeID
     String employeeType
-    String username
-    String password
+    public String username
+    private String password
 
     Accounts(){
-        employeeID = idAssigner;
-        idAssigner++;
-        employeeType = "employee";
     }
 
     Accounts(String user, String pass){
-        employeeID = idAssigner;
-        idAssigner++;
         employeeType = "employee";
         username = user;
-        password = pass
+        password = pass;
+    }
+    Accounts(String user, String pass, String type){
+        employeeType = type;
+        username = user;
+        password = pass;
     }
 
-    String getUsername(){
-        return username;
-    }
+
 
 }
 
