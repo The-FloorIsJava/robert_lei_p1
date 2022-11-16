@@ -1,17 +1,32 @@
-Accounts{
+MenuController{
+    String currentUser;
+    String userType;
+    LoginHelper login;
+    TicketHelper ticket;
+
+}
+
+RegisterHelper{
+    static bool checkRequirements(String username, String password){
+        String sql = "SELECT username FROM accounts WHERE username='"+username+"';";
+    }
+}
+
+
+Account{
     String employeeType
     public String username
     private String password
 
-    Accounts(){
+    Account(){
     }
 
-    Accounts(String user, String pass){
+    Account(String user, String pass){
         employeeType = "employee";
         username = user;
         password = pass;
     }
-    Accounts(String user, String pass, String type){
+    Account(String user, String pass, String type){
         employeeType = type;
         username = user;
         password = pass;
@@ -35,15 +50,5 @@ Login{
         }else{
         return result;
         }
-    }
-}
-Menu{
-    int curUserID;
-
-    boolean login(String username, String password){
-
-    }
-    void logout(){
-        curUserID = -1;
     }
 }

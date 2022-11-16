@@ -1,34 +1,34 @@
-DROP TABLE IF EXISTS ACCOUNTS CASCADE;
-CREATE TABLE ACCOUNTS (
+DROP TABLE IF EXISTS accounts CASCADE;
+CREATE TABLE accounts (
 	username varchar(30) PRIMARY KEY,
-	password varchar(50) NOT NULL --turns out password isnt a reserved word, looks like it though
-	firstName varchar(50),
-	lastName varchar(50),
+	passcode varchar(50) NOT NULL, --turns out password isnt a reserved word, looks like it though
+	first_name varchar(50),
+	last_name varchar(50),
 	address varchar(200),
-	profilePicture blob,
-	accountType varchar(20) DEFAULT 'employee',
+	profile_picture bytea,
+	account_type varchar(20) DEFAULT 'employee'
 );
-DROP TABLE IF EXISTS TICKETS CASCADE;
-CREATE TABLE TICKETS (
-	ticketID serial PRIMARY KEY,
-	ticketName varchar(40),
-	ticketType varchar(40) DEFAULT 'General',
-	ticketDescription varchar(10000) NOT NULL,
+DROP TABLE IF EXISTS tickets CASCADE;
+CREATE TABLE tickets (
+	ticket_id serial PRIMARY KEY,
+	ticket_name varchar(40),
+	ticket_type varchar(40) DEFAULT 'General',
+	ticket_description varchar(10000) NOT NULL,
 	amount numeric NOT NULL,
 	status varchar(50) DEFAULT 'Pending',
-	supportingImage blob,
-	submitterUser varchar(30),
-	FOREIGN KEY(submitterUser) REFERENCES ACCOUNTS(username)
+	supporting_image bytea,
+	submitter_user varchar(30),
+	FOREIGN KEY(submitter_user) REFERENCES accounts(username)
 	ON DELETE CASCADE
 );
 
 /*
 --Testing purposes 
-INSERT INTO ACCOUNTS(firstName, lastName, username, passcode) VALUES ('this', 'is', 'a', 'test');
-INSERT INTO ACCOUNTS(firstName, lastName, username, passcode) VALUES ('this', 'also', 'is', 'test');
+INSERT INTO ACCOUNTS(first_name, last_name, username, passcode) VALUES ('this', 'is', 'a', 'test');
+INSERT INTO ACCOUNTS(first_name, last_name, username, passcode) VALUES ('this', 'also', 'is', 'test');
 SELECT * FROM ACCOUNTS;
-DELETE FROM ACCOUNTS WHERE lastName = 'also';
+DELETE FROM ACCOUNTS WHERE last_name = 'also';
 SELECT * FROM ACCOUNTS;
-INSERT INTO TICKETS(ticketDescription, amount, submitterid) SELECT 'send help!', 0, username FROM ACCOUNTS WHERE lastName = 'is'; 
+INSERT INTO TICKETS(ticket_description, amount, submitter_user) SELECT 'send help!', 0, username FROM ACCOUNTS WHERE last_name = 'is'; 
 SELECT * FROM TICKETS;
 */
