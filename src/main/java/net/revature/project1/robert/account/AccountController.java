@@ -6,20 +6,17 @@ import io.javalin.http.Context;
 import javax.xml.crypto.Data;
 
 public class AccountController {
-    String currentUser;
-    String userType;
 
-    public AccountController(){
-    }
-    public void setup(Javalin app){
-        currentUser = null;
-        userType = null;
-        app.get("login", this::login);
+    public AccountController(Javalin app){
+        app.get("register", this::registerController);
+        app.get("login", this::loginController);
     }
 
-    private void login(Context context){
-        String username = context.pathParam("username");
-        String password = context.pathParam("password");
+    private void registerController(Context context) {
+    }
+
+    private void loginController(Context context){
+
     }
 
 }
