@@ -9,19 +9,19 @@ public class CurrentUser {
     public CurrentUser(){
 
     }
-    public void login(Account account){
-        this.account = account;
+    public static void login(Account acc){
+        account = acc;
     }
-    public String getUserType(){
+    public static String getUserType(){
         return account.getAccountType();
     }
-    public String getUserName(){
+    public static String getUserName(){
         return account.getUsername();
     }
-    public void logout(){
+    public static void logout(){
         account = null;
     }
-    public boolean isLoggedIn(){
+    public static boolean isLoggedIn(){
         return (!Objects.isNull(account)); //if exists, returns true
     }
 }
