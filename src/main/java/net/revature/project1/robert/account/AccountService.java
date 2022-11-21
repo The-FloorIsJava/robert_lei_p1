@@ -20,12 +20,15 @@ public class AccountService {
     }
     public boolean register(Account acc){ //TODO
         Account check = accountDBAccess.findById(acc.getUsername());
-        if(check.getUsername().equals(acc.getUsername())){
-            return false;
-        }else if(acc.getPasscode().isEmpty()){
+        if(check != null){
+            if(check.getUsername().equals(acc.getUsername())){
+                return false;
+            }
+        }
+        if(acc.getPasscode()==null){
             return false;
         }
-        if(acc.getAccountType().isEmpty()){
+        if(acc.getAccountType()==null){
             acc.setAccountType("employee");
         }
         accountDBAccess.create(acc);
