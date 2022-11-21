@@ -10,9 +10,9 @@ public class AccountController {
 
     AccountService accountServices = new AccountService();
     public AccountController(Javalin app){
-        app.get("register", this::registerController);
-        app.get("login", this::loginController);
-        app.post("logout", this::logoutController);
+        app.post("register", this::registerController);
+        app.post("login", this::loginController);
+        app.get("logout", this::logoutController);
     }
 
     private void registerController(Context context) throws JsonProcessingException{

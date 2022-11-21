@@ -9,6 +9,9 @@ public class AccountService {
     }
     public boolean login(Account acc){ //TODO
         Account loginCheck = accountDBAccess.findById(acc.getUsername());
+        if(loginCheck==null){
+            return false;
+        }
         boolean userPass = (loginCheck.getPasscode().equals(acc.getPasscode()));
         if(userPass){
             CurrentUser.login(loginCheck);

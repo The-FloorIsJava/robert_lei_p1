@@ -15,13 +15,27 @@ public class AccountDAO implements CRUD<Account> {
 
     @Override
     public Account create(Account newObject) {
-        return null;
+        try(Connection connect = ConnectionFactory.getConnectionFactory().getConnection()){
+            String sql = "INSERT INTO accounts (username, passcode, account_type) VALUES (?,?,?);";
+            PreparedStatement prepStatement = connect.prepareStatement(sql);
+            prepStatement.setString(1, newObject.getUsername());
+            prepStatement.setString(2, newObject.getPasscode());
+            prepStatement.setString(3, newObject.getAccountType());
+            int insertCheck = prepStatement.executeUpdate();
+            if(insertCheck==0){
+                throw new RuntimeException("Account not registered w/ proper info");
+            }
+            return newObject;
+        }catch(SQLException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     public Account findById(String username) {
         try(Connection connect = ConnectionFactory.getConnectionFactory().getConnection()) {
-            String sql = "SELECT * FROM accounts WHERE username = ?";
+            String sql = "SELECT * FROM accounts WHERE username = ?;";
             PreparedStatement prepStatement= connect.prepareStatement(sql);
             prepStatement.setString(1, username);
             ResultSet results = prepStatement.executeQuery();

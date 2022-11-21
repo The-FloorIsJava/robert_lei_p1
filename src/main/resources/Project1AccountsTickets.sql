@@ -22,7 +22,7 @@ CREATE TABLE tickets (
 	ON DELETE CASCADE
 );
 
-/*
+
 --Testing purposes 
 INSERT INTO ACCOUNTS(first_name, last_name, username, passcode) VALUES ('this', 'is', 'a', 'test');
 INSERT INTO ACCOUNTS(first_name, last_name, username, passcode) VALUES ('this', 'also', 'is', 'test');
@@ -31,4 +31,4 @@ DELETE FROM ACCOUNTS WHERE last_name = 'also';
 SELECT * FROM ACCOUNTS;
 INSERT INTO TICKETS(ticket_description, amount, submitter_user) SELECT 'send help!', 0, username FROM ACCOUNTS WHERE last_name = 'is'; 
 SELECT * FROM TICKETS;
-*/
+
