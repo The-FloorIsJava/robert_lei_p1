@@ -27,6 +27,14 @@ public class Account {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPasscode(String passcode) {
+        this.passcode = passcode;
+    }
+
     public String getPasscode() {
         return passcode;
     }
@@ -59,8 +67,8 @@ public class Account {
         return profilePicture;
     }
 
-    public void setProfilePicture(File profilePicture) {
-        this.profilePicture = profilePicture;
+    public void setProfilePicture(byte[] profilePicture) {//conversion from byte array to file tbd
+        this.profilePicture = null;
     }
 
     public String getAccountType() {

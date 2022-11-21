@@ -9,10 +9,23 @@ public class AccountService {
     }
     public boolean login(Account acc){ //TODO
         Account loginCheck = accountDBAccess.findById(acc.getUsername());
-        return (loginCheck.getPasscode().equals(acc.getPasscode()));
+        boolean userPass = (loginCheck.getPasscode().equals(acc.getPasscode()));
+        if(userPass){
+            CurrentUser.login(loginCheck);
+        }
+        return userPass;
     }
-    public void register(Account acc){ //TODO
+    public boolean register(Account acc){ //TODO
         Account check = accountDBAccess.findById(acc.getUsername());
-
+        if(check.getUsername().equals(acc.getUsername())){
+            return false;
+        }else if(acc.getPasscode().isEmpty()){
+            return false;
+        }
+        if(acc.getAccountType().isEmpty()){
+            acc.setAccountType("employee");
+        }
+        accountDBAccess.create(acc);
+        return true;
     }
 }

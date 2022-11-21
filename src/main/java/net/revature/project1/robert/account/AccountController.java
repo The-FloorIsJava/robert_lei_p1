@@ -21,8 +21,12 @@ public class AccountController {
         }else {
             ObjectMapper mapper = new ObjectMapper();
             Account acc = mapper.readValue(context.body(), Account.class);
-            accountServices.register(acc);
-            context.json("registered");
+            boolean successful = accountServices.register(acc);
+            if(successful){
+                context.json("registered");
+            }else{
+                context.json("registration error");
+            }
         }
     }
 
