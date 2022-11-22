@@ -12,7 +12,7 @@ public class Ticket {
     double amount;
     String status;
     File supportingImage;
-    Account submitterUser;
+    String submitterUser;
 
     public int getTicketId() {
         return ticketId;
@@ -66,22 +66,22 @@ public class Ticket {
         return supportingImage;
     }
 
-    public void setSupportingImage(File supportingImage) {
-        this.supportingImage = supportingImage;
+    public void setSupportingImage(byte[] supportingImage) {
+        //TODO convert byte array to file
     }
 
-    public Account getSubmitterUser() {
+    public String getSubmitterUser() {
         return submitterUser;
     }
 
-    public void setSubmitterUser(Account submitterUser) {
+    public void setSubmitterUser(String submitterUser) {
         this.submitterUser = submitterUser;
     }
 
     public Ticket(){
 
     }
-    public Ticket(int ticketId, String ticketDescription,double amount, Account submitter){
+    public Ticket(int ticketId, String ticketDescription,double amount, String submitter){
         this.ticketId=ticketId;
         this.ticketDescription=ticketDescription;
         this.amount=amount;
