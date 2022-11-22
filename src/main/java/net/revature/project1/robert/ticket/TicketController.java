@@ -11,10 +11,10 @@ import java.util.List;
 public class TicketController {
     TicketService ticketServices = new TicketService();
     public TicketController(Javalin app){
-        app.post("pending", this::viewPendingTicketController);
-        app.post("previous", this::seePreviousTicketController);
-        app.get("update", this::processPendingTicket);
-        app.get("submit", this::submitTicketController);
+        app.get("pending", this::viewPendingTicketController);
+        app.get("previous", this::seePreviousTicketController);
+        app.post("update", this::processPendingTicket);
+        app.post("submit", this::submitTicketController);
     }
     private void viewPendingTicketController(Context context){
         if(!CurrentUser.isLoggedIn()){

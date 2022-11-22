@@ -87,4 +87,18 @@ public class Ticket {
         this.amount=amount;
         this.submitterUser = submitter;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ticketId=" + ticketId +
+                ", ticketName='" + ticketName + '\'' +
+                ", ticketType='" + ticketType + '\'' +
+                ", ticketDescription='" + ticketDescription + '\'' +
+                ", amount=" + amount +
+                ", status='" + status + '\'' +
+                ", supportingImage=" + supportingImage +
+                ", submitterUser='" + submitterUser + '\'' +
+                '}';
+    }
 }

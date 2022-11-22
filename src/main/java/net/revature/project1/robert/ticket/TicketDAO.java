@@ -42,7 +42,7 @@ public class TicketDAO implements CRUD<Ticket> {
             String sql = "SELECT * FROM tickets WHERE status=pending;";
             PreparedStatement prepStatement= connect.prepareStatement(sql);
             ResultSet results = prepStatement.executeQuery();
-            while(!results.next()){
+            while(results.next()){
                 pending.add(convertTicket(results));
             }
             return pending;
@@ -58,7 +58,7 @@ public class TicketDAO implements CRUD<Ticket> {
             PreparedStatement prepStatement= connect.prepareStatement(sql);
             prepStatement.setString(1, username);
             ResultSet results = prepStatement.executeQuery();
-            while(!results.next()){
+            while(results.next()){
                 previous.add(convertTicket(results));
             }
             return previous;
@@ -109,7 +109,7 @@ public class TicketDAO implements CRUD<Ticket> {
         ticket.setTicketName(result.getString("ticket_name"));
         ticket.setTicketType(result.getString("ticket_type"));
         ticket.setTicketDescription(result.getString("ticket_description"));
-        ticket.setAmount(result.getDouble("amount numeric"));
+        ticket.setAmount(result.getDouble("amount"));
         ticket.setStatus(result.getString("status"));
         ticket.setSupportingImage(result.getBytes("supporting_image"));
         ticket.setSubmitterUser(result.getString("submitter_user"));
