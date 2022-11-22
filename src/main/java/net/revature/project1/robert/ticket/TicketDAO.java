@@ -39,7 +39,7 @@ public class TicketDAO implements CRUD<Ticket> {
     public List<Ticket> findPendingTickets(){ //TODO
         List<Ticket> pending = new ArrayList<Ticket>();
         try(Connection connect = ConnectionFactory.getConnectionFactory().getConnection()) {
-            String sql = "SELECT * FROM tickets WHERE status=pending;";
+            String sql = "SELECT * FROM tickets WHERE status='pending';";
             PreparedStatement prepStatement= connect.prepareStatement(sql);
             ResultSet results = prepStatement.executeQuery();
             while(results.next()){
