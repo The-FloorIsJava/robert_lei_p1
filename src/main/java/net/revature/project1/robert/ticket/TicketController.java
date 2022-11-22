@@ -13,7 +13,7 @@ public class TicketController {
     public TicketController(Javalin app){
         app.post("pending", this::viewPendingTicketController);
         app.post("previous", this::seePreviousTicketController);
-        app.get("update/{ticketID}", this::processPendingTicket);
+        app.get("update", this::processPendingTicket);
         app.get("submit", this::submitTicketController);
     }
     private void viewPendingTicketController(Context context){
@@ -36,22 +36,18 @@ public class TicketController {
             context.json(previousTickets);
         }
     }
-    private void processPendingTicket(Context context){
+    private void processPendingTicket(Context context) throws JsonProcessingException{
         if(!CurrentUser.isLoggedIn()){
             context.json("not logged in");
         } else if(CurrentUser.getUserType().equals("employee")){
             context.json("not enough permissions for this account type");
         } else {
-            String ticketID = context.pathParam("ticketID");
             boolean updated = false;
-            try{
-                updated = ticketServices.processTicket(Integer.parseInt(ticketID));
-            }catch(NumberFormatException e){
-                context.json("Check the path");
-                e.printStackTrace();
-            }
+            ObjectMapper mapper = new ObjectMapper();
+            Ticket processing = mapper.readValue(context.body(),Ticket.class);
+            updated = ticketServices.processTicket(processing);
             if(updated){
-                context.json("ticket "+ticketID+ " processed");
+                context.json("ticket "+processing.getTicketId()+" processed");
             }else{
                 context.json("ticket failed to process");
             }

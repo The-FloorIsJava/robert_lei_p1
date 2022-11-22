@@ -1,5 +1,6 @@
 package net.revature.project1.robert.ticket;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TicketService {
@@ -8,19 +9,27 @@ public class TicketService {
 
     }
     public List<Ticket> listPendingTickets(){
-
-        return null;
+        List<Ticket> pending = ticketDBAccess.findPendingTickets();
+        return pending;
     }
     public List<Ticket> listPreviousTickets(String user){
-
-        return null;
+        List<Ticket> previous = ticketDBAccess.findPreviousTickets(user);
+        return previous;
     }
     public boolean addTicket(Ticket newTicket){
-
-        return false;
+        if(ticketDBAccess.create(newTicket)!=null){
+            return true;
+        }else {
+            return false;
+        }
     }
-    public boolean processTicket(int ticketID){
-
-        return false;
+    public boolean processTicket(Ticket processTicket){
+        if(processTicket.getStatus().equalsIgnoreCase("approved")
+                || processTicket.getStatus().equalsIgnoreCase("denied")) {
+            return ticketDBAccess.update(processTicket);
+        }
+        else {
+            return false;
+        }
     }
 }
