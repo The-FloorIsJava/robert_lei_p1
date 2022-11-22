@@ -15,7 +15,7 @@ CREATE TABLE tickets (
 	ticket_type varchar(40) DEFAULT 'General',
 	ticket_description varchar(10000) NOT NULL,
 	amount numeric NOT NULL,
-	status varchar(50) DEFAULT 'Pending',
+	status varchar(50) DEFAULT 'pending',
 	supporting_image bytea,
 	submitter_user varchar(30),
 	FOREIGN KEY(submitter_user) REFERENCES accounts(username)
